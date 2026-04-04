@@ -1,0 +1,75 @@
+<footer class="footer-custom mt-5">
+  <div class="container py-5">
+    <div class="row gy-4">
+      <!-- LOGO / SOBRE -->
+      <div class="col-lg-4">
+        <img src="img/logo.png" height="60" class="mb-3" />
+
+        <p class="footer-text">
+          Sua loja de acessórios, roupas e óculos com estilo, elegância e
+          personalidade.
+        </p>
+
+        <div class="d-flex gap-3 mt-3">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+
+      <!-- INSTITUCIONAL -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h6>Institucional</h6>
+        <ul class="list-unstyled">
+          <li><a href="/quem-somos">Quem Somos</a></li>
+          <li><a href="/trocas-e-devolucoes">Trocas e Devoluções</a></li>
+          <li>
+            <a href="/politica-de-privacidade">Política de Privacidade</a>
+          </li>
+          <li><a href="/termos-de-uso">Termos de Uso</a></li>
+          <li><a href="/contato">Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <!-- MINHA CONTA -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h6>Minha Conta</h6>
+        <ul class="list-unstyled">
+          <li><a href="/meus-pedidos">Meus Pedidos</a></li>
+          <li><a href="#">Login / Cadastro</a></li>
+          <li><a href="/carrinho">Carrinho</a></li>
+          <li><a href="#">Lista de Desejos</a></li>
+          <li><a href="#">Acompanhar Envio</a></li>
+        </ul>
+      </div>
+
+      <!-- ATENDIMENTO -->
+      <div class="col-6 col-md-3 col-lg-2">
+        <h6>Atendimento</h6>
+        <ul class="list-unstyled">
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="tel:0000000000">(00) 00000-0000</a></li>
+          <li>
+            <a href="mailto:contato@suaempresa.com">contato@suaempresa.com</a>
+          </li>
+          <li><a href="#">Horário de Atendimento</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom text-center py-3">
+    <small
+      >&copy; <small id="ano"></small> Bença. Todos os direitos
+      reservados.</small
+    >
+  </div>
+</footer>
+<script>
+  let data = new Date();
+  let ano = data.getFullYear();
+
+  document.getElementById("ano").innerText = ano;
+</script>
