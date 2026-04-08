@@ -20,7 +20,7 @@ async function apiRotaCadastro(dadosform) {
 
 document.addEventListener("DOMContentLoaded", async function () {
   const form = document.getElementById("formCadastro");
-  console.log("🔥 DOM CARREGADO");
+  console.log(" DOM CARREGADO");
 
   if (!form) {
     console.log("Formulário não encontrado");
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const resposta = await apiRotaCadastro(dados);
 
       if (resposta.sucesso === true) {
-        alert("Usuário cadastrado com sucesso.");
+        alert(resposta.mensagem);
         window.location.href = "/login";
       }
       console.log(resposta.erros);

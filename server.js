@@ -1,6 +1,9 @@
 import express from "express";
 import authRoutes from "./routes/routes.js";
+import { Usuarios } from "./models/usuarios.js";
 
+import dotenv from "dotenv";
+dotenv.config();
 //criando uma estancia do express
 const app = express();
 // Define o motor de templates (template engine) EJS para renderizar views dinâmicas

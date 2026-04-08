@@ -1,53 +1,61 @@
 # 🛒 Ecommerce Fullstack Node
 
-Sistema de e-commerce fullstack desenvolvido com Node.js, com foco em boas práticas, validação de dados, integração entre frontend e backend e consumo de APIs externas.
+Sistema de e-commerce fullstack desenvolvido com Node.js, focado em boas práticas, organização de código e integração completa entre frontend e backend.
 
 ---
 
 ## 🚀 Funcionalidades
 
-### 👤 Cadastro de Usuário
+### 👤 Cadastro de Usuário ✅ (CONCLUÍDO)
 
-* Captura de dados via formulário (EJS + JS)
-* Envio utilizando Fetch API
-* Validação no backend com middleware
-* Exibição de erros por campo no frontend
-* Estrutura de resposta padronizada (API)
+* Cadastro de novos usuários
+* Validação de dados com middleware
+* Verificação de e-mail duplicado
+* Criptografia de senha
+* Envio de e-mail com Nodemailer
+* Retorno padronizado da API
+* Exibição de erros no frontend por campo
+* Integração completa via Fetch API
+
+---
 
 ### 🌐 Integração com API de CEP
 
-* Consulta automática de endereço via API externa (ViaCEP)
-* Preenchimento dinâmico dos campos:
+* Consulta automática via ViaCEP
+* Preenchimento automático de:
 
   * Logradouro
   * Bairro
   * Cidade
   * Estado
-* Redução de erros de digitação
-* Melhoria na experiência do usuário
+* Melhora na experiência do usuário
+
+---
 
 ### 🔐 Autenticação *(em desenvolvimento)*
 
 * Sistema de login
 * Sessões
-* (Planejado) Autenticação em dois fatores (2FA)
+* Planejamento de autenticação em dois fatores (2FA)
 
 ---
 
 ## 🧠 Tecnologias utilizadas
 
-### Backend
+### 🔙 Backend
 
 * Node.js
 * Express
-* JavaScript
+* Sequelize
+* MySQL
+* Nodemailer
 
-### Frontend
+### 🎨 Frontend
 
 * HTML5
 * CSS3
 * JavaScript (Vanilla)
-* EJS (renderização de views)
+* EJS
 
 ---
 
@@ -56,50 +64,45 @@ Sistema de e-commerce fullstack desenvolvido com Node.js, com foco em boas prát
 * Requisições via Fetch API
 * Envio de dados em JSON
 * Validação centralizada via middleware
-* Respostas estruturadas:
+* Resposta padrão da API:
 
 ```json
 {
   "sucesso": false,
   "erros": {
     "email": { "msg": "Formato de e-mail inválido" }
+
   }
 }
 ```
 
 ---
 
-## 🧩 Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```bash
-📁 projeto
+📁 BENCA
  ├── 📁 controller
  ├── 📁 database
  ├── 📁 middlewares
- │   └── validacaoCadastro.js
  ├── 📁 models
+ ├── 📁 node_modules
  ├── 📁 public
  │   ├── 📁 css
  │   ├── 📁 img
  │   └── 📁 js
- │       ├── cadastroUsuario.js
- │       └── cep.js
- │
  ├── 📁 routes
- │   ├── routes.js
- │   └── teste.js
- │
  ├── 📁 services
  ├── 📁 views
  │   ├── 📁 partials
- │   │   ├── footer.ejs
- │   │   ├── header.ejs
  │   │   └── cadastro.ejs
  │   └── index.ejs
  │
+ ├── .env
  ├── dockerfile
  ├── package.json
  ├── package-lock.json
+ ├── README.md
  └── server.js
 ```
 
@@ -117,11 +120,28 @@ cd ecommerce-fullstack-node
 # Instalar dependências
 npm install
 
+# Criar arquivo .env
+nano .env
+```
+
+### 📌 Exemplo de `.env`
+
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=sua_senha
+DB_NAME=ecommerce
+
+EMAIL_USER=seu_email@gmail.com
+EMAIL_PASS=sua_senha_de_app
+```
+
+```bash
 # Rodar o servidor
 npm start
 ```
 
-A aplicação estará disponível em:
+Acesse:
 
 ```
 http://localhost:3000
@@ -129,20 +149,23 @@ http://localhost:3000
 
 ---
 
-## 🛠️ Arquitetura e boas práticas
+## 🛠️ Arquitetura
 
-* Separação de responsabilidades (MVC)
-* Uso de middlewares para validação
-* Organização modular (controllers, services, routes)
-* Comunicação desacoplada via API
-* Frontend consumindo backend via fetch
+* Arquitetura MVC
+* Separação em camadas:
+
+  * Controller
+  * Service
+  * Model
+* Middlewares para validação
+* Código modular e escalável
+* API desacoplada do frontend
 
 ---
 
 ## 🚧 Melhorias futuras
 
 * 🔐 Sistema completo de autenticação
-* 🔐 Autenticação em dois fatores (2FA)
 * 🛒 Carrinho de compras
 * 💳 Integração com pagamento
 * 📦 Sistema de pedidos
@@ -151,26 +174,27 @@ http://localhost:3000
 
 ---
 
-## 💼 Objetivo do Projeto
+## 💼 Objetivo
 
-Projeto desenvolvido com foco na transição para desenvolvimento fullstack, aplicando:
+Projeto desenvolvido com foco em evolução profissional como desenvolvedor fullstack, aplicando:
 
-* Integração entre frontend e backend
+* Integração real entre frontend e backend
 * Consumo de APIs externas
-* Estruturação de aplicações reais
-* Boas práticas de organização de código
+* Estruturação de aplicações escaláveis
+* Boas práticas de desenvolvimento
 
 ---
 
 ## 👨‍💻 Autor
 
-**Mateus**
+**Mateus Felipe**
 
-🔗 GitHub: https://github.com/Zero-Absolut
-🔗 LinkedIn: https://www.linkedin.com/in/mateus-fbs
+GitHub: https://github.com/Zero-Absolut
+LinkedIn: https://www.linkedin.com/in/mateus-fbs
 
 ---
 
-## ⭐ Observação
+## ⭐ Status
 
-Este projeto está em constante evolução conforme avanço nos estudos e implementação de novas funcionalidades.
+🚧 Projeto em desenvolvimento contínuo.
+

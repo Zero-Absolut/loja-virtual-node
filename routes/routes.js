@@ -3,6 +3,7 @@ import {
   regrasValidaCliente,
   regraCadastrosClientes,
 } from "../middlewares/validacaoCadastro.js";
+import { cadastraUsuario } from "../controller/cadastro.js";
 
 const route = express.Router();
 
@@ -15,7 +16,12 @@ route.get("/cadastro", (req, res) => {
   });
 });
 
-route.post("/cadastro", regraCadastrosClientes, regrasValidaCliente);
+route.post(
+  "/cadastro",
+  regraCadastrosClientes,
+  regrasValidaCliente,
+  cadastraUsuario,
+);
 
 route.get("/index", (req, res) => {
   res.render("index");
