@@ -67,6 +67,10 @@ export const Usuarios = conn.define("usuarios", {
     type: DataTypes.ENUM("ativo", "inativo", "bloqueado"),
     defaultValue: "inativo",
   },
+  token_expira: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
 });
 
 // Sincroniza o model Produtos com o banco de dados

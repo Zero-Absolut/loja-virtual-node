@@ -1,20 +1,6 @@
-import bcrypt from "bcrypt";
 import { criarUsuario } from "../services/cadastroUsuario.js";
-import crypto from "crypto";
-//function para gerar token aleatorio
-
-function geraToken() {
-  return crypto.randomBytes(32).toString("hex");
-}
-
-//function para criar hash de senha
-async function criaHashSenha(senha) {
-  const saltos = 10;
-
-  const Hash = await bcrypt.hash(senha, saltos);
-
-  return Hash;
-}
+import { criaHashSenha } from "../utils/criaHashSenha.js";
+import { geraToken } from "../utils/geraToken.js";
 
 export async function cadastraUsuario(req, res) {
   try {
@@ -23,9 +9,12 @@ export async function cadastraUsuario(req, res) {
     const senhaHash = await criaHashSenha(dadosClienteCadastro.senha);
     const token = geraToken();
 
+    const expiraEm = new Date(Date.now() + 60 * 60 * 1000); // 1h
+
     delete dadosClienteCadastro.senha;
     delete dadosClienteCadastro.confirmar_senha;
 
+    dadosClienteCadastro.tokenExpiraEm = expiraEm;
     dadosClienteCadastro.senhaBanco = senhaHash;
     dadosClienteCadastro.token = token;
 

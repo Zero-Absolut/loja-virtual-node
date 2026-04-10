@@ -161,3 +161,27 @@ export function regrasValidaCliente(req, res, next) {
     dados: req.body,
   });
 }
+
+export const validaEmailReenvioToken = [
+  body("email")
+    .trim()
+    .notEmpty()
+    .withMessage("E-mail obrigatório.")
+    .isEmail()
+    .withMessage("Formato de e-mail inválido.")
+    .normalizeEmail(),
+];
+
+export function verificaReenvioToken(req, res, next) {
+  const erros = validationResult(req);
+
+  if (erros.isEmpty) {
+    return next();
+  }
+  return res.status(400).json({
+    sucesso: false,
+    mensagem: "Erro de validação.",
+    erros: erros.mapped(),
+    dados: req.body.email,
+  });
+}

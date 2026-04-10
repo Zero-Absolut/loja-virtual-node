@@ -1,0 +1,83 @@
+<%- include('partials/header') %>
+
+<main class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow-sm border-0 text-center">
+          <div class="card-body p-4">
+            <h3 class="mb-3">Ops! Algo deu errado 😕</h3>
+
+            <p class="mb-4">
+              O link de ativação é inválido ou expirou.<br />
+              Solicite um novo email para ativar sua conta.
+            </p>
+
+            <div class="d-grid gap-2">
+              <button
+                type="button"
+                class="btn btn-dark"
+                data-bs-toggle="modal"
+                data-bs-target="#modalReenvio"
+              >
+                Reenviar email
+              </button>
+
+              <a href="/" class="text-muted small"> Voltar para o início </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div
+  class="modal fade"
+  id="modalReenvio"
+  tabindex="-1"
+  aria-labelledby="modalReenvioLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalReenvioLabel">
+          Reenviar email de ativação
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- 🔥 INÍCIO DO ALERT -->
+        <div id="mensagem" class="alert d-none" role="alert"></div>
+        <!-- 🔥 FIM DO ALERT -->
+
+        <form action="/reenviar-ativacao" id="reenvio" method="POST">
+          <div class="mb-3 text-start">
+            <label for="email" class="form-label">Seu email</label>
+            <input
+              type="email"
+              name="email"
+              id="emailReenvio"
+              class="form-control"
+              placeholder="Digite seu email"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-dark w-100">
+            Enviar novo link
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
+<script src="/js/cadastroUsuario.js"></script>

@@ -31,6 +31,7 @@ export async function criarUsuario(dados) {
       termos: dados.termos,
       token_ativacao: dados.token,
       status: "inativo",
+      token_expira: dados.tokenExpiraEm,
     });
 
     if (novoUsuario) {
@@ -101,6 +102,54 @@ export async function criarUsuario(dados) {
       mensagem: "Erro interno no servidor",
       dados: null,
       erros: null,
+    };
+  }
+}
+
+export async function ativaUsuario(token) {
+  try {
+    const usuario = await Usuarios.findOne({
+      where: { token_ativacao: token },
+    });
+    const agora = new Date();
+
+    if (!usuario) {
+      return {
+        sucesso: false,
+        mensagem: "Link inválido ou expirado",
+      };
+    }
+
+    if (usuario.status === "ativo") {
+      return {
+        sucesso: false,
+        mensagem: "Conta já ativada.",
+      };
+    }
+
+    if (!usuario.token_expira || usuario.token_expira < agora) {
+      return {
+        sucesso: false,
+        mensagem: "Link inválido ou expirado",
+      };
+    }
+
+    usuario.token_ativacao = null;
+    usuario.token_expira = null;
+    usuario.status = "ativo";
+
+    await usuario.save();
+
+    return {
+      sucesso: true,
+      mensagem: "Conta ativada com sucesso.",
+    };
+  } catch (err) {
+    console.error("Erro ao ativar conta.", err);
+
+    return {
+      sucesso: false,
+      mensagem: "Erro ao ativar conta.",
     };
   }
 }

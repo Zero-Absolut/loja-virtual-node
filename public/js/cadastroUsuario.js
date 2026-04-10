@@ -69,3 +69,50 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 });
+
+async function apiReenvioEmail(email) {
+  try {
+    const resposta = await fetch("http://localhost:3000/reenviar-ativacao", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const resultado = await resposta.json();
+
+    return resultado;
+  } catch (err) {
+    console.log("Erro", err);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const formReenvio = document.getElementById("reenvio");
+  const msg = document.getElementById("mensagem");
+  console.log(formReenvio);
+  if (!formReenvio) {
+    console.log("Formulário de reenvio não encontrado");
+    return;
+  }
+  formReenvio.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("emailReenvio").value;
+    const resultado = await apiReenvioEmail(email);
+    console.log(resultado);
+    // mostra mensagem
+    msg.classList.remove("d-none");
+    msg.textContent = resultado.mensagem;
+
+    // define cor
+    if (resultado.sucesso) {
+      msg.classList.remove("alert-danger");
+      msg.classList.add("alert-success");
+    } else {
+      msg.classList.remove("alert-success");
+      msg.classList.add("alert-danger");
+    }
+  });
+});
