@@ -18,14 +18,14 @@ export async function reenviaTokenAtivacao(req, res) {
   const resultado = await reenviaEmailAtivacaoConta(req.body.email);
 
   if (!resultado.sucesso) {
-    return res.status(201).json({
+    return res.status(400).json({
       sucesso: false,
       mensagem: resultado.mensagem,
     });
   }
 
-  return res.status(400).json({
+  return res.status(200).json({
     sucesso: true,
-    meensage: resultado.mensagem,
+    mensagem: resultado.mensagem,
   });
 }
