@@ -1,8 +1,9 @@
 import express from "express";
 import authRoutes from "./routes/routes.js";
-import { Usuarios } from "./models/usuarios.js";
 
+import session from "express-session";
 import dotenv from "dotenv";
+
 dotenv.config();
 //criando uma estancia do express
 const app = express();
@@ -18,6 +19,21 @@ app.use(express.urlencoded({ extended: true }));
 
 // Faz o Express interpretar requisições com corpo em JSON
 app.use(express.json());
+
+// inicio da configuração do middleware global de session
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false, // true só em HTTPS
+      maxAge: 1000 * 60 * 60 * 4,
+    },
+  }),
+);
+//fim
 
 app.use("/", authRoutes);
 

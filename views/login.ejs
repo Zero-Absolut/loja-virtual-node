@@ -1,0 +1,65 @@
+<%- include('partials/header') %>
+
+<main class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h3 class="text-center mb-4">Entrar</h3>
+
+            <form id="formLogin" action="/login" method="POST" novalidate>
+              <!-- EMAIL -->
+              <div class="mb-3">
+                <label class="form-label">E-mail</label>
+                <input
+                  id="emailLogin"
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  required
+                />
+                <small id="erro-email" class="text-danger"></small>
+              </div>
+
+              <!-- SENHA -->
+              <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <input
+                  id="senhaLogin"
+                  type="password"
+                  class="form-control"
+                  name="senha"
+                  required
+                />
+                <small id="erro-senha" class="text-danger"></small>
+              </div>
+
+              <!-- LEMBRAR + ESQUECI -->
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <a href="/recuperar-senha">Esqueci minha senha</a>
+              </div>
+
+              <!-- BOTÃO -->
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-dark">Entrar</button>
+              </div>
+
+              <!-- REDIRECIONAMENTO -->
+              <p class="text-center" style="font-size: 0.9em">
+                Não tem uma conta?
+                <a href="/cadastro">Criar conta</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+
+<script src="/js/verificarCodigo.js"></script>

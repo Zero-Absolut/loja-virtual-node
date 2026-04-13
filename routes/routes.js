@@ -11,15 +11,17 @@ import {
   reenviaTokenAtivacao,
 } from "../controller/ativarConta.js";
 
+import {
+  regrasValidacaoLogin,
+  validaLogin,
+} from "../middlewares/verificaAutenticacao.js";
+
+import { login, codigo2fa } from "../controller/autenticacaoController.js";
+
 const route = express.Router();
 
 route.get("/cadastro", (req, res) => {
-  res.render("cadastro", {
-    sucesso: null,
-    mensagem: null,
-    erros: {},
-    dados: {},
-  });
+  res.render("cadastro");
 });
 
 route.post(
@@ -51,4 +53,24 @@ route.post(
   verificaReenvioToken,
   reenviaTokenAtivacao,
 );
+
+route.get("/login", (req, res) => {
+  res.render("login");
+});
+
+route.post("/login", regrasValidacaoLogin, validaLogin, login);
+
+// trobalhar melhor rota logout
+route.post("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.json({ sucesso: true });
+  });
+});
+
+route.get("/verificar_codigo", (req, res) => {
+  res.render("verificar_codigo");
+});
+
+route.post("/verificar_codigo", codigo2fa);
+
 export default route;

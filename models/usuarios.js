@@ -71,6 +71,22 @@ export const Usuarios = conn.define("usuarios", {
     type: DataTypes.DATE,
     allowNull: true,
   },
+
+  codigo_2fa: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: null,
+  },
+  codigo_2fa_expira: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    defaultValue: null,
+  },
+  tentativa_login: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 0,
+  },
 });
 
 // Sincroniza o model Produtos com o banco de dados

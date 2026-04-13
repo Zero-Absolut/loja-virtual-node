@@ -1,0 +1,92 @@
+<%- include('partials/header') %>
+
+<main class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h3 class="text-center mb-3">Verificação</h3>
+            <p class="text-center text-muted" style="font-size: 0.9em">
+              Digite o código enviado para seu e-mail
+            </p>
+
+            <form id="formCodigo" method="post" novalidate>
+              <!-- INPUTS DO CÓDIGO -->
+              <div class="d-flex justify-content-between mb-3">
+                <input
+                  type="text"
+                  maxlength="1"
+                  class="form-control codigo-input"
+                  id="id1"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  class="form-control codigo-input"
+                  id="id2"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  class="form-control codigo-input"
+                  id="id3"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  class="form-control codigo-input"
+                  id="id4"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  class="form-control codigo-input"
+                  id="id5"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  class="form-control codigo-input"
+                  id="id6"
+                />
+              </div>
+
+              <small id="erro-codigo" class="text-danger text-center"></small>
+
+              <!-- BOTÃO -->
+              <div class="d-grid mb-3 mt-3">
+                <button type="submit" class="btn btn-dark">
+                  Verificar código
+                </button>
+              </div>
+
+              <!-- REENVIAR -->
+              <p class="text-center" style="font-size: 0.85em">
+                Não recebeu?
+                <a href="#" id="reenviarCodigo">Reenviar código</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- INÍCIO MODAL -->
+<div class="modal fade" id="modalMensagem" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-3">
+      <div class="modal-body">
+        <p id="mensagemModal" class="mb-4"></p>
+        <button id="btnOk" class="btn btn-dark">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIM MODAL -->
+
+<%- include('partials/footer') %>
+
+<script src="/js/validaCodigo2fa.js"></script>

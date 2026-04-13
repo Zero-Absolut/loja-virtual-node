@@ -269,3 +269,57 @@ form input {
   font-size: 0.8em;
   color: #555;
 }
+
+/* LOGIN */
+
+@media (min-width: 992px) {
+  .col-lg-6 {
+    max-width: 500px;
+  }
+}
+
+/* Link "esqueci senha"  */
+a[href="/recuperar-senha"] {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: #777;
+  transition: 0.2s;
+}
+
+a[href="/recuperar-senha"]:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* Texto inferior (criar conta) */
+form p {
+  color: #555;
+}
+
+/* Pequena animação no card (sensação premium) */
+.card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Feedback de erro mais visível */
+.text-danger {
+  font-size: 0.8em;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Checkbox alinhado melhor */
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-label {
+  cursor: pointer;
+}
