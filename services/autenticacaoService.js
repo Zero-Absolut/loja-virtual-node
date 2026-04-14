@@ -115,14 +115,17 @@ export async function validaCodigo2fa(dados) {
     };
   }
 
-  if (usuario.codigo_2fa_expira < new Date()) {
+  if (!usuario.codigo_2fa_expira || usuario.codigo_2fa_expira < new Date()) {
     return {
       sucesso: false,
       mensagem: "Código expirado.",
     };
   }
 
-  const codigoValido = await bcrypt.compare(dados.codigo, usuario.codigo_2fa);
+  const codigoValido = await bcrypt.compare(
+    String(dados.codigo),
+    usuario.codigo_2fa,
+  );
 
   if (!codigoValido) {
     return {

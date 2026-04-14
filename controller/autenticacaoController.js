@@ -1,4 +1,7 @@
-import { autenticarUsuarioService } from "../services/autenticacaoService.js";
+import {
+  autenticarUsuarioService,
+  validaCodigo2fa,
+} from "../services/autenticacaoService.js";
 
 export async function login(req, res) {
   const { email, senha } = req.body;
@@ -24,14 +27,16 @@ export async function login(req, res) {
 
 export async function codigo2fa(req, res) {
   const codigo = req.body.codigo;
-  const id = req.session.usuario2fa?.id;
+  const usuario2fa = req.session.usuario2fa;
 
-  if (!id) {
+  if (!usuario2fa || !usuario2fa.id) {
     return res.status(401).json({
       sucesso: false,
       mensagem: "Sessão inválida",
     });
   }
+
+  const id = usuario2fa.id;
 
   const resultado = await validaCodigo2fa({ codigo, id });
 
@@ -41,10 +46,14 @@ export async function codigo2fa(req, res) {
       mensagem: resultado.mensagem,
     });
   }
-  delete req.session.usuario2fa;
+
   req.session.usuario = {
     id: resultado.id,
   };
+
+  if (req.session.usuario) {
+    delete req.session.usuario2fa;
+  }
   return res.status(200).json({
     sucesso: true,
     mensagem: resultado.mensagem,

@@ -25,14 +25,35 @@ app.use(express.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    //  Chave secreta usada para assinar o cookie da sessão (protege contra alteração maliciosa)
+
     resave: false,
+    //  Evita salvar a sessão no servidor a cada requisição se nada mudou (melhora performance)
+
     saveUninitialized: false,
+    //  Não cria sessão vazia automaticamente (só cria quando você realmente usa req.session)
+
     cookie: {
-      secure: false, // true só em HTTPS
+      secure: false,
+      //  Define se o cookie só funciona em HTTPS
+      // false = funciona em http (desenvolvimento)
+      // true = só funciona em https (produção)
+
+      httpOnly: true,
+      //  Impede o JavaScript do navegador de acessar o cookie (proteção contra XSS)
+
+      sameSite: "lax",
+      //  Controla quando o cookie é enviado
+      // "lax" = envia na maioria dos casos (ideal para apps normais)
+      // evita que o navegador bloqueie o cookie em requisições como fetch
+
       maxAge: 1000 * 60 * 60 * 4,
+      // ⏱️Tempo de vida do cookie (4 horas)
+      // depois disso, a sessão expira automaticamente no navegador
     },
   }),
 );
+
 //fim
 
 app.use("/", authRoutes);

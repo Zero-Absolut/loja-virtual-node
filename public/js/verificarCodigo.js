@@ -1,5 +1,3 @@
-console.log("LOGIN JS CARREGADO");
-
 async function apiLogin(dados) {
   try {
     const resposta = await fetch("http://localhost:3000/login", {
@@ -36,8 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    console.log("SUBMIT DISPARADO");
-
     const dados = {
       email: document.getElementById("emailLogin").value,
       senha: document.getElementById("senhaLogin").value,
@@ -45,9 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const resposta = await apiLogin(dados);
 
-    console.log(resposta);
-
-    // 🔥 REGRA FINAL SIMPLES
     if (resposta.sucesso || resposta.requer2fa) {
       console.log("resposta enviada");
 

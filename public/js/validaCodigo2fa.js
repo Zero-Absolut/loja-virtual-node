@@ -10,6 +10,7 @@ async function validaCodigo2fa(dados) {
     });
 
     const resultado = await resposta.json();
+    console.log(resultado);
 
     if (!resultado.sucesso) {
       return {
@@ -27,7 +28,7 @@ async function validaCodigo2fa(dados) {
 
     return {
       sucesso: false,
-      mensagem: "Erro ao encaminhar código.",
+      mensagem: "Erro ao encaminhar código um.",
     };
   }
 }
