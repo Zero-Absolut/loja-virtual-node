@@ -14,9 +14,15 @@ import {
 import {
   regrasValidacaoLogin,
   validaLogin,
+  regrasRecuperacaoConta,
+  validarRecuperacaoConta,
 } from "../middlewares/verificaAutenticacao.js";
 
-import { login, codigo2fa } from "../controller/autenticacaoController.js";
+import {
+  login,
+  codigo2fa,
+  solicitarRecuperacaoConta,
+} from "../controller/autenticacaoController.js";
 
 const route = express.Router();
 
@@ -72,5 +78,16 @@ route.get("/verificar_codigo", (req, res) => {
 });
 
 route.post("/verificar_codigo", codigo2fa);
+
+route.get("/recuperar-senha", (req, res) => {
+  res.render("recuperar-senha");
+});
+
+route.post(
+  "/recuperar-senha",
+  regrasRecuperacaoConta,
+  validarRecuperacaoConta,
+  solicitarRecuperacaoConta,
+);
 
 export default route;

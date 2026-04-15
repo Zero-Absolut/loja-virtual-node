@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 import { geraCodigo2fs } from "../utils/geraCodigo2fa.js";
 import { enviaEmail } from "../utils/envioEmail.js";
 import { criaHashSenha } from "../utils/criaHashSenha.js";
+import { geraToken } from "../utils/geraToken.js";
+import { templateRecuperacaoSenha } from "../templates/recuperacaoSenha.js";
+import { templateAtivacaoConta } from "../templates/ativacaoConta.js";
 
 export async function autenticarUsuarioService(dados) {
   try {
@@ -76,11 +79,14 @@ export async function autenticarUsuarioService(dados) {
 
     await usuario.save();
 
+    const template = templateAtivacaoConta(codigo_2fa);
+    console.log("TEMPLATE:", template);
+
     const resultado = await enviaEmail({
       email: usuario.email,
-      codigo: codigo_2fa,
+      subject: template.subject,
+      html: template.html,
     });
-
     if (!resultado.sucesso) {
       return {
         sucesso: false,
@@ -143,4 +149,59 @@ export async function validaCodigo2fa(dados) {
     mensagem: "Usuário logado com sucesso",
     id: usuario.id,
   };
+}
+
+export async function processarRecuperacaoConta(dados) {
+  try {
+    const usuario = await Usuarios.findOne({
+      where: { email: dados },
+    });
+
+    if (!usuario) {
+      return {
+        sucesso: false,
+        mensagem:
+          "Se o e-mail existir, você receberá as instruções de recuperação.",
+      };
+    }
+
+    const tokenRecuperacaoConta = geraToken();
+
+    const hashCodigoRecuperaConta = await criaHashSenha(tokenRecuperacaoConta);
+
+    const expira = new Date(Date.now() + 15 * 60 * 1000);
+
+    usuario.token_recuperacao = hashCodigoRecuperaConta;
+    usuario.expira_token_recuperacao = expira;
+    await usuario.save();
+
+    const link = `http://localhost:3000/resetar-senha?token=${tokenRecuperacaoConta}`;
+
+    const template = templateRecuperacaoSenha(link);
+
+    const respostaEmail = await enviaEmail({
+      email: usuario.email,
+      subject: template.subject,
+      html: template.html,
+    });
+
+    if (!respostaEmail.sucesso) {
+      return {
+        sucesso: false,
+        mensagem: "Erro ao enviar o e-mail.",
+      };
+    }
+    return {
+      sucesso: true,
+      mensagem:
+        "E-mail enviado com sucesso, verifique a caixa de e-mail e siga os passos para a recuperação.",
+    };
+  } catch (erro) {
+    console.error("Erro interno no servidor", erro);
+
+    return {
+      sucesso: false,
+      mensagem: "Erro ao processar dados.",
+    };
+  }
 }

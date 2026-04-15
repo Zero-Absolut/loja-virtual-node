@@ -87,6 +87,17 @@ export const Usuarios = conn.define("usuarios", {
     allowNull: true,
     defaultValue: 0,
   },
+  token_recuperacao: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: null,
+  },
+
+  expira_token_recuperacao: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    defaultValue: null,
+  },
 });
 
 // Sincroniza o model Produtos com o banco de dados

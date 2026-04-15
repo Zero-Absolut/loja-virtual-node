@@ -323,3 +323,21 @@ form p {
 .form-check-label {
   cursor: pointer;
 }
+/* estilo da pagina recuperar_senha*/
+
+/* TEXTO AUXILIAR CENTRAL */
+.text-center p {
+  font-size: 0.9em;
+  color: #777;
+}
+
+/* SUCESSO (quando enviar email) */
+.alert-success-custom {
+  background-color: #fdecef;
+  color: #333;
+  border: 1px solid #f7dce2;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  text-align: center;
+}

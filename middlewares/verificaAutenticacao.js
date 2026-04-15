@@ -39,3 +39,28 @@ export function validaLogin(req, res, next) {
     erros: errosFormatados,
   });
 }
+
+export const regrasRecuperacaoConta = [
+  body("email")
+    .trim()
+    .notEmpty()
+    .withMessage("Necessário o e-mail.")
+    .isEmail()
+    .withMessage("Necessário um e-mail válido.")
+    .normalizeEmail(),
+];
+
+export function validarRecuperacaoConta(req, res, next) {
+  const erros = validationResult(req);
+
+  const errosTratados = erros.mapped();
+
+  if (!erros.isEmpty) {
+    return {
+      sucesso: false,
+      mensagem: errosTratados,
+    };
+  }
+
+  return next();
+}

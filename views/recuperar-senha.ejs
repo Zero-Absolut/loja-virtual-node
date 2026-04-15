@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="text-center mb-3">Recuperar Senha</h3>
+            <p class="text-center mb-4" style="font-size: 0.9em; color: #666">
+              Informe seu e-mail para receber o link de recuperação.
+            </p>
+
+            <form
+              id="formRecuperarSenha"
+              action="/recuperar-senha"
+              method="POST"
+              novalidate
+            >
+              <!-- EMAIL -->
+              <div class="mb-3">
+                <label class="form-label">E-mail</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  placeholder="seuemail@email.com"
+                  required
+                />
+                <small id="erro-email" class="text-danger"></small>
+              </div>
+
+              <!-- BOTÃO -->
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-dark">
+                  Enviar link de recuperação
+                </button>
+              </div>
+
+              <!-- VOLTAR LOGIN -->
+              <div class="text-center">
+                <a href="/login">Voltar para o login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+
+<script src="/js/recuperarSenha.js"></script>
