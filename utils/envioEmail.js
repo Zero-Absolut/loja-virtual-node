@@ -2,7 +2,6 @@ import nodemailer from "nodemailer";
 
 export async function enviaEmail({ email, subject, html }) {
   try {
-    // 🛑 validação (ESSENCIAL)
     if (!email || !subject || !html) {
       console.log("Dados inválidos para envio:", { email, subject, html });
       return { sucesso: false, mensagem: "Dados inválidos no envio de email" };

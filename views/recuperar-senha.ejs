@@ -11,12 +11,7 @@
               Informe seu e-mail para receber o link de recuperação.
             </p>
 
-            <form
-              id="formRecuperarSenha"
-              action="/recuperar-senha"
-              method="POST"
-              novalidate
-            >
+            <form id="formRecuperarSenha" method="POST" novalidate>
               <!-- EMAIL -->
               <div class="mb-3">
                 <label class="form-label">E-mail</label>
@@ -48,8 +43,22 @@
       </div>
     </div>
   </div>
+  <!-- MODAL ALERT -->
+  <div class="modal fade" id="modalAlerta" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-3">
+        <h5 class="mb-3">Verifique seu e-mail</h5>
+
+        <p style="font-size: 0.9em; color: #666">
+          Se existir uma conta com esse e-mail, enviamos o link de recuperação.
+        </p>
+
+        <button class="btn btn-dark mt-2" id="btnConfirmar">OK</button>
+      </div>
+    </div>
+  </div>
 </main>
 
 <%- include('partials/footer') %>
 
-<script src="/js/recuperarSenha.js"></script>
+<script src="/js/validaRecuperacaoSenha.js"></script>

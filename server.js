@@ -48,7 +48,7 @@ app.use(
       // evita que o navegador bloqueie o cookie em requisições como fetch
 
       maxAge: 1000 * 60 * 60 * 4,
-      // ⏱️Tempo de vida do cookie (4 horas)
+      // Tempo de vida do cookie (4 horas)
       // depois disso, a sessão expira automaticamente no navegador
     },
   }),

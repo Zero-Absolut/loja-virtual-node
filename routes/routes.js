@@ -90,4 +90,9 @@ route.post(
   solicitarRecuperacaoConta,
 );
 
+route.get("/recuperar-senha-enviado", (req, res) => {
+  res.render("recuperar-senha-enviado");
+});
+
+//route.post("/resetar-senha");
 export default route;

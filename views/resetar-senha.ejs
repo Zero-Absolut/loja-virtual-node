@@ -1,0 +1,68 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="text-center mb-3">Redefinir Senha</h3>
+
+            <p class="text-center mb-4" style="font-size: 0.9em; color: #666">
+              Digite sua nova senha abaixo.
+            </p>
+
+            <form id="formResetSenha" method="POST" action="/resetar-senha">
+              <!-- TOKEN (OCULTO) -->
+              <input type="hidden" name="token" value="<%= token %>" />
+
+              <!-- NOVA SENHA -->
+              <div class="mb-3">
+                <label class="form-label">Nova senha</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="senha"
+                  id="senha"
+                  placeholder="Digite sua nova senha"
+                  required
+                />
+                <small id="erro-senha" class="text-danger"></small>
+              </div>
+
+              <!-- CONFIRMAR SENHA -->
+              <div class="mb-3">
+                <label class="form-label">Confirmar senha</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="confirmarSenha"
+                  id="confirmarSenha"
+                  placeholder="Confirme sua nova senha"
+                  required
+                />
+                <small id="erro-confirmar" class="text-danger"></small>
+              </div>
+
+              <!-- BOTÃO -->
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-dark">
+                  Redefinir senha
+                </button>
+              </div>
+
+              <!-- VOLTAR LOGIN -->
+              <div class="text-center">
+                <a href="/login">Voltar para o login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+
+<script src="/js/resetSenha.js"></script>

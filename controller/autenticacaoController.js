@@ -105,3 +105,32 @@ export async function solicitarRecuperacaoConta(req, res) {
     });
   }
 }
+
+//função para verificar se o token resetar senha e valido
+
+export async function solicitaVerificacaoTokenResetaSenha(req, res) {
+  try {
+    const tokenResetaSenha = req.query.token;
+
+    const resultado =
+      await processaVerificacaoTokenResetarSenha(tokenResetaSenha);
+
+    if (!resultado.sucesso) {
+      return res.status(401).json({
+        sucesso: false,
+        mensagem: "Erro ao verificar token",
+      });
+    }
+    return res.status(200).json({
+      sucesso: resultado.sucesso,
+      mensagem: resultado.mensagem,
+    });
+  } catch (err) {
+    console.erro("Erro ao verificar token", err);
+
+    return res.status(500).json({
+      sucesso: false,
+      mensagem: "Erro ao verificar token",
+    });
+  }
+}

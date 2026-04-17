@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+<main class="main-content">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <h3 class="mb-3">Verifique seu e-mail</h3>
+
+            <p class="mb-4" style="font-size: 0.9em; color: #666">
+              Se existir uma conta com esse endereço, você receberá um link para
+              redefinir sua senha.
+            </p>
+
+            <!-- MENSAGEM VISUAL -->
+            <div class="alert-success-custom mb-4">
+              📩 Enviamos as instruções de recuperação.
+              <br />
+              Verifique sua caixa de entrada e também o spam.
+            </div>
+
+            <!-- AÇÕES -->
+            <div class="d-grid gap-2 mb-3">
+              <a href="/login" class="btn btn-dark"> Voltar para o login </a>
+            </div>
+
+            <!-- REENVIAR -->
+            <p style="font-size: 0.8em; color: #777">
+              Não recebeu o e-mail?
+              <a href="/recuperar-senha">Tentar novamente</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

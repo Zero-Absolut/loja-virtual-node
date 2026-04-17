@@ -7,12 +7,20 @@ body {
   font-weight: 200;
   background-color: #fdf6f8;
   color: #333;
+
+  /* NOVO */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ÁREA PRINCIPAL */
 .main-content {
   background-color: #ffffff;
   padding: 40px 0;
+
+  /* NOVO */
+  flex: 1;
 }
 
 /* CARD (FORMULÁRIO) */
@@ -95,6 +103,7 @@ a {
 a:hover {
   color: #000;
 }
+
 /* BOTÃO */
 .btn-dark {
   background-color: #fdecef;
@@ -109,12 +118,13 @@ a:hover {
   transition: all 0.25s ease;
 }
 
-/* HOVER (EFEITO VISÍVEL MAS SUAVE) */
+/* HOVER */
 .btn-dark:hover {
   background-color: #f7dce2;
   color: #000;
   transform: translateY(-1px);
 }
+
 /* ESPAÇAMENTO */
 .card-body {
   padding: 30px;
@@ -217,11 +227,15 @@ form input {
   color: #000;
   font-size: 1.2em;
 }
+
 /* FOOTER */
 .footer-custom {
   background-color: #f3e7ea;
   color: #333;
   font-family: "Inter", sans-serif;
+
+  /* NOVO (opcional mas ideal) */
+  margin-top: auto;
 }
 
 /* TEXTOS */
@@ -271,7 +285,6 @@ form input {
 }
 
 /* LOGIN */
-
 @media (min-width: 992px) {
   .col-lg-6 {
     max-width: 500px;
@@ -291,12 +304,12 @@ a[href="/recuperar-senha"]:hover {
   text-decoration: underline;
 }
 
-/* Texto inferior (criar conta) */
+/* Texto inferior */
 form p {
   color: #555;
 }
 
-/* Pequena animação no card (sensação premium) */
+/* Animação */
 .card {
   transition:
     transform 0.2s ease,
@@ -308,14 +321,14 @@ form p {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* Feedback de erro mais visível */
+/* Erro */
 .text-danger {
   font-size: 0.8em;
   margin-top: 4px;
   display: block;
 }
 
-/* Checkbox alinhado melhor */
+/* Checkbox */
 .form-check-input {
   cursor: pointer;
 }
@@ -323,15 +336,14 @@ form p {
 .form-check-label {
   cursor: pointer;
 }
-/* estilo da pagina recuperar_senha*/
 
-/* TEXTO AUXILIAR CENTRAL */
+/* TEXTO AUXILIAR */
 .text-center p {
   font-size: 0.9em;
   color: #777;
 }
 
-/* SUCESSO (quando enviar email) */
+/* ALERT */
 .alert-success-custom {
   background-color: #fdecef;
   color: #333;

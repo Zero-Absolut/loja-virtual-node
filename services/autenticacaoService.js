@@ -153,6 +153,15 @@ export async function validaCodigo2fa(dados) {
 
 export async function processarRecuperacaoConta(dados) {
   try {
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const email = dados;
+
+    if (!regexEmail.test(email)) {
+      return {
+        sucesso: false,
+        mensagem: "formato de e-mail inválido",
+      };
+    }
     const usuario = await Usuarios.findOne({
       where: { email: dados },
     });
@@ -194,7 +203,7 @@ export async function processarRecuperacaoConta(dados) {
     return {
       sucesso: true,
       mensagem:
-        "E-mail enviado com sucesso, verifique a caixa de e-mail e siga os passos para a recuperação.",
+        "Se o e-mail existir, você receberá as instruções de recuperação.",
     };
   } catch (erro) {
     console.error("Erro interno no servidor", erro);
@@ -204,4 +213,11 @@ export async function processarRecuperacaoConta(dados) {
       mensagem: "Erro ao processar dados.",
     };
   }
+}
+
+// função para verificar se o token de setar senha passa
+
+export async function processaVerificacaoTokenResetarSenha(dados) {
+  // TODO: implementar validação do token e busca do usuário
+  throw new Error("Função ainda não implementada");
 }
